@@ -1,0 +1,26 @@
+<odoo>
+    <record id="emprunt_view_tree" model="ir.ui.view">
+        <field name="name">bibliotheque.emprunt.tree</field>
+        <field name="model">bibliotheque.emprunt</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="date_debut"/>
+                <field name="date_fin"/>
+                <field name="rendu"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="emprunt_action" model="ir.actions.act_window">
+        <field name="name">Emprunts</field>
+        <field name="res_model">bibliotheque.emprunt</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <menuitem
+        id="emprunt_menu_item"
+        name="Emprunts"
+        parent="models_menu"
+        action="emprunt_action"
+    />
+</odoo>
