@@ -1,0 +1,40 @@
+<odoo>
+    <!-- Wizard form view -->
+    <record id="view_add_emprunt_wizard_form" model="ir.ui.view">
+        <field name="name">bibliotheque.add.emprunt.wizard.form</field>
+        <field name="model">bibliotheque.add.emprunt.wizard</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="emprunteur_id" readonly="1"/>
+                            <field name="date_debut"/>
+                            <field name="date_fin"/>
+                        </group>
+                    </group>
+                    <notebook>
+                        <page string="Books to Borrow">
+                            <field name="line_ids">
+                                <tree editable="bottom">
+                                    <field name="livre_id"/>
+                                    <field name="isbn"/>
+                                    <field name="auteur_id"/>
+                                </tree>
+                            </field>
+                        </page>
+                    </notebook>
+                </sheet>
+                <footer>
+                    <button name="action_add_emprunts"
+                            string="Create Loan"
+                            type="object"
+                            class="btn-primary"/>
+                    <button special="cancel"
+                            string="Cancel"
+                            class="btn-secondary"/>
+                </footer>
+            </form>
+        </field>
+    </record>
+</odoo>

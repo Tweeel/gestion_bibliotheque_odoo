@@ -4,6 +4,7 @@
         <field name="model">bibliotheque.emprunt</field>
         <field name="arch" type="xml">
             <tree>
+                <field name="emprunteur_id"/>
                 <field name="date_debut"/>
                 <field name="date_fin"/>
                 <field name="rendu"/>
@@ -11,16 +12,35 @@
         </field>
     </record>
 
+    <record model="ir.ui.view" id="view_emprunt_search">
+        <field name="name">bibliotheque.emprunt.search.view</field>
+        <field name="model">bibliotheque.emprunt</field>
+        <field name="arch" type="xml">
+            <search>
+                <field name="emprunteur_id" string="Emprunteur"
+                       filter_domain="[('emprunteur_id.nom', 'ilike', self)]"/>
+
+                <field name="emprunt_ligne_ids" string="Auteur"
+                       filter_domain="[('emprunt_ligne_ids.livre_id.auteur_id.nom', 'ilike', self)]"/>
+
+                <group expand="0" string="Group By">
+                    <filter name="group_rendu" string="Rendu" icon="terp-partner" context="{'group_by':'rendu'}"/>
+                </group>
+            </search>
+        </field>
+    </record>
+
     <record id="emprunt_action" model="ir.actions.act_window">
         <field name="name">Emprunts</field>
         <field name="res_model">bibliotheque.emprunt</field>
         <field name="view_mode">tree,form</field>
+        <field name="search_view_id" ref="view_emprunt_search"/>
     </record>
 
     <menuitem
-        id="emprunt_menu_item"
-        name="Emprunts"
-        parent="models_menu"
-        action="emprunt_action"
+            id="emprunt_menu_item"
+            name="Emprunts"
+            parent="models_menu"
+            action="emprunt_action"
     />
 </odoo>

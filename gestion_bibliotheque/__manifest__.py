@@ -28,6 +28,8 @@ Long description of module's purpose
         'views/emprunt_view.xml',
         'views/emprunteur_view.xml',
         'views/livre_view.xml',
+        'wizards/add_emprunt_wizard_views.xml',
+        'wizards/view_reset_emprunts_wizard_form.xml',
     ],
     'application': True,
 }

@@ -13,10 +13,25 @@
         </field>
     </record>
 
+    <record model="ir.ui.view" id="view_auteur_search">
+        <field name="name">bibliotheque.auteur.search.view</field>
+        <field name="model">bibliotheque.auteur</field>
+        <field name="arch" type="xml">
+            <search>
+                <field name="nom"/>
+                <field name="prenom"/>
+                <field name="nationalite"/>
+                <field name="sexe"/>
+                <filter string="Tunisia" name="filter_tunisien" domain="[('nationalite', '=', 'Tunisia')]"/>
+            </search>
+        </field>
+    </record>
+
     <record id="auteur_action" model="ir.actions.act_window">
         <field name="name">Auteurs</field>
         <field name="res_model">bibliotheque.auteur</field>
         <field name="view_mode">tree,form</field>
+        <field name="search_view_id" ref="view_auteur_search"/>
     </record>
 
     <menuitem

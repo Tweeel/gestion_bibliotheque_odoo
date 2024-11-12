@@ -9,8 +9,67 @@
                 <field name="date_naissance"/>
                 <field name="state"/>
                 <field name="sexe"/>
+                <field name="nbr_emprunt"/>
             </tree>
         </field>
+    </record>
+
+     <record id="emprunteur_view_form" model="ir.ui.view">
+        <field name="name">bibliotheque.emprunteur.form</field>
+        <field name="model">bibliotheque.emprunteur</field>
+        <field name="arch" type="xml">
+            <form>
+                <header>
+                    <button name="%(action_add_emprunts)d"
+                            string="Add Loans"
+                            type="action"
+                            class="oe_highlight"/>
+                    <button name="%(action_reset_emprunts)d"
+                            string="Reset Loans"
+                            type="action"
+                            class="btn btn-danger"/>
+                </header>
+                <sheet>
+                    <group>
+                        <field name="nom"/>
+                        <field name="prenom"/>
+                        <field name="date_naissance"/>
+                        <field name="state"/>
+                        <field name="sexe"/>
+                        <field name="nbr_emprunt"/>
+                    </group>
+                    <notebook>
+                        <page string="Loans">
+                            <field name="emprunt_ids" readonly="1">
+                                <tree>
+                                    <field name="date_debut"/>
+                                    <field name="date_fin"/>
+                                    <field name="rendu"/>
+                                </tree>
+                            </field>
+                        </page>
+                    </notebook>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_add_emprunts" model="ir.actions.act_window">
+        <field name="name">Add Loans</field>
+        <field name="res_model">bibliotheque.add.emprunt.wizard</field>
+        <field name="view_mode">form</field>
+        <field name="view_id" ref="view_add_emprunt_wizard_form"/>
+        <field name="target">new</field>
+        <field name="context">{'default_emprunteur_id': active_id}</field>
+    </record>
+
+    <record id="action_reset_emprunts" model="ir.actions.act_window">
+        <field name="name">Reset Loans</field>
+        <field name="res_model">bibliotheque.reset.emprunts.wizard</field>
+        <field name="view_mode">form</field>
+        <field name="view_id" ref="view_reset_emprunts_wizard_form"/>
+        <field name="target">new</field>
+        <field name="context">{'default_emprunteur_id': active_id}</field>
     </record>
 
     <record id="emprunteur_action" model="ir.actions.act_window">
@@ -21,7 +80,7 @@
 
     <menuitem
         id="emprunteur_menu_item"
-        name="EmprunteurS"
+        name="Emprunteurs"
         parent="models_menu"
         action="emprunteur_action"
     />

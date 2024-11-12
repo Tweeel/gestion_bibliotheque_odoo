@@ -3,8 +3,9 @@
         <field name="name">bibliotheque.livre.tree</field>
         <field name="model">bibliotheque.livre</field>
         <field name="arch" type="xml">
-            <tree>
+            <tree editable="top">
                 <field name="titre"/>
+                <field name="auteur_id"/>
                 <field name="langue_livre"/>
                 <field name="isbn"/>
                 <field name="nbre_page"/>
@@ -12,10 +13,21 @@
         </field>
     </record>
 
+    <record model="ir.ui.view" id="view_livre_search">
+        <field name="name">bibliotheque.livre.search.view</field>
+        <field name="model">bibliotheque.livre</field>
+        <field name="arch" type="xml">
+            <search>
+                <field name="isbn"/>
+            </search>
+        </field>
+    </record>
+
     <record id="livre_action" model="ir.actions.act_window">
         <field name="name">Livres</field>
         <field name="res_model">bibliotheque.livre</field>
         <field name="view_mode">tree,form</field>
+        <field name="search_view_id" ref="view_livre_search"/>
     </record>
 
     <menuitem

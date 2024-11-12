@@ -2,4 +2,9 @@ id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
 access_bibliotheque_auteur,access.bibliotheque.auteur,model_bibliotheque_auteur,base.group_user,1,1,1,1
 access_bibliotheque_emprunt,access.bibliotheque.emprunt,model_bibliotheque_emprunt,base.group_user,1,1,1,1
 access_bibliotheque_emprunteur,access.bibliotheque.emprunteur,model_bibliotheque_emprunteur,base.group_user,1,1,1,1
+access_bibliotheque_emprunt_ligne,access.bibliotheque.emprunt_ligne,model_bibliotheque_emprunt_ligne,base.group_user,1,1,1,1
 access_bibliotheque_livre,access.bibliotheque.livre,model_bibliotheque_livre,base.group_user,1,1,1,1
+
+access_bibliotheque_add_emprunt_wizard,access.bibliotheque.add.emprunt.wizard,model_bibliotheque_add_emprunt_wizard,base.group_user,1,1,1,1
+access_bibliotheque_add_emprunt_wizard_line,access.bibliotheque.add.emprunt.wizard.line,model_bibliotheque_add_emprunt_wizard_line,base.group_user,1,1,1,1
+access_bibliotheque_reset_emprunts_wizard,access.bibliotheque.reset.emprunts.wizard,model_bibliotheque_reset_emprunts_wizard,base.group_user,1,1,1,1
