@@ -14,7 +14,7 @@
         </field>
     </record>
 
-     <record id="emprunteur_view_form" model="ir.ui.view">
+    <record id="emprunteur_view_form" model="ir.ui.view">
         <field name="name">bibliotheque.emprunteur.form</field>
         <field name="model">bibliotheque.emprunteur</field>
         <field name="arch" type="xml">
@@ -27,7 +27,8 @@
                     <button name="%(action_reset_emprunts)d"
                             string="Reset Loans"
                             type="action"
-                            class="btn btn-danger"/>
+                            class="btn btn-danger"
+                            groups="gestion_bibliotheque.group_library_director"/>
                 </header>
                 <sheet>
                     <group>
@@ -79,9 +80,9 @@
     </record>
 
     <menuitem
-        id="emprunteur_menu_item"
-        name="Emprunteurs"
-        parent="models_menu"
-        action="emprunteur_action"
+            id="emprunteur_menu_item"
+            name="Emprunteurs"
+            parent="models_menu"
+            action="emprunteur_action"
     />
 </odoo>
