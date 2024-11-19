@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="action_report_product_template" model="ir.actions.report">
+            <field name="name">Auteur Report</field>
+            <field name="model">bibliotheque.auteur</field>
+            <field name="report_type">qweb-pdf</field>
+            <field name="report_name">gestion_bibliotheque.report_fiche_auteur</field>
+            <field name="report_file">gestion_bibliotheque.report_fiche_auteur</field>
+            <field name="binding_model_id" ref="model_bibliotheque_auteur"/>
+            <field name="binding_type">report</field>
+        </record>
+        <template id="report_fiche_auteur">
+            <t t-call="web.html_container">
+                <t t-foreach="docs" t-as="auteur">
+                    <t t-call="web.external_layout">
+                        <div class="page">
+                            <t t-debug="auteur"/>
+                            <t t-debug="auteur.livre_ids"/>
+                            <h2>Fiche Auteur</h2>
+                            <div class="row mt-4">
+                                <div class="col-6">
+                                    <strong>Nom complet:</strong>
+                                    <span t-field="auteur.nom"/>
+                                    <span t-field="auteur.prenom"/>
+                                </div>
+                                <div class="col-6">
+                                    <strong>Date de naissance:</strong>
+                                    <span t-field="auteur.date_naissance"/>
+                                </div>
+                            </div>
+
+                            <div class="row mt-3">
+                                <div class="col-6">
+                                    <strong>Nationalité:</strong>
+                                    <span t-field="auteur.nationalite"/>
+                                </div>
+                                <div class="col-6">
+                                    <strong>Sexe:</strong>
+                                    <span t-field="auteur.sexe"/>
+                                </div>
+                            </div>
+
+                            <h3 class="mt-4">Liste des livres</h3>
+                            <table class="table table-bordered mt-2">
+                                <thead>
+                                    <tr>
+                                        <th>Titre</th>
+                                        <th>ISBN</th>
+                                        <th>Langue</th>
+                                        <th>Nombre de page</th>
+                                        <th>
+                                            Nombre d'emprunt
+                                        </th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr t-foreach="auteur.livre_ids" t-as="livre">
+                                        <td>
+                                            <span t-field="livre.titre"/>
+                                        </td>
+                                        <td>
+                                            <span t-field="livre.isbn"/>
+                                        </td>
+                                        <td>
+                                            <span t-field="livre.langue_livre"/>
+                                        </td>
+                                        <td>
+                                            <span t-field="livre.nbre_page"/>
+                                        </td>
+                                        <td>
+                                            <span t-esc="len(livre.emprunt_ligne_ids)"/>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </t>
+                </t>
+            </t>
+        </template>
+    </data>
+</odoo>

@@ -31,6 +31,9 @@ Long description of module's purpose
         'views/livre_view.xml',
         'wizards/add_emprunt_wizard_views.xml',
         'wizards/view_reset_emprunts_wizard_form.xml',
+        'raport/auteur_report.xml',
+        'raport/emprenteur_report.xml',
+        'raport/emprunt_report.xml'
     ],
     'application': True,
 }

@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="action_report_product_template" model="ir.actions.report">
+            <field name="name">Emprunteur Report</field>
+            <field name="model">bibliotheque.emprunteur</field>
+            <field name="report_type">qweb-pdf</field>
+            <field name="report_name">gestion_bibliotheque.report_fiche_emprunteur</field>
+            <field name="report_file">gestion_bibliotheque.report_fiche_emprunteur</field>
+            <field name="binding_model_id" ref="model_bibliotheque_emprunteur"/>
+            <field name="binding_type">report</field>
+        </record>
+        <template id="report_fiche_emprunteur">
+            <t t-call="web.html_container">
+                <t t-foreach="docs" t-as="emprunteur">
+                    <t t-call="web.external_layout">
+                        <div class="page">
+                            <t t-debug="emprunteur"/>
+                            <h2>Fiche Emprenteur</h2>
+                            <div class="row mt-4">
+                                <div class="col-6">
+                                    <strong>Nom complet:</strong>
+                                    <span t-field="emprunteur.nom"/>
+                                    <span t-field="emprunteur.prenom"/>
+                                </div>
+                                <div class="col-6">
+                                    <strong>Date de naissance:</strong>
+                                    <span t-field="emprunteur.date_naissance"/>
+                                </div>
+                            </div>
+
+                            <div class="row mt-3">
+                                <div class="col-6">
+                                    <strong>Nationalité:</strong>
+                                    <span t-field="emprunteur.state"/>
+                                </div>
+                                <div class="col-6">
+                                    <strong>Sexe:</strong>
+                                    <span t-field="emprunteur.sexe"/>
+                                </div>
+                            </div>
+
+                            <h3 class="mt-4">Liste des livres</h3>
+                            <table class="table table-bordered mt-2">
+                                <thead>
+                                    <tr>
+                                        <th>date_debut</th>
+                                        <th>date_fin</th>
+                                        <th>Titre de Livre</th>
+                                        <th>Rendu</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr t-foreach="emprunteur.emprunt_ids" t-as="emprunt">
+                                        <td>
+                                            <span t-field="emprunt.date_debut"/>
+                                        </td>
+                                        <td>
+                                            <span t-field="emprunt.date_fin"/>
+                                        </td>
+                                        <td>
+                                            <t t-foreach="emprunt.emprunt_ligne_ids" t-as="ligne">
+                                                <div><span t-field="ligne.livre_id.titre"/></div>
+                                            </t>
+                                        </td>
+                                         <td>
+                                            <span t-if="emprunt.rendu">Rendu</span>
+                                            <span t-else="">En cours</span>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </t>
+                </t>
+            </t>
+        </template>
+    </data>
+</odoo>

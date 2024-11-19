@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="action_report_product_template" model="ir.actions.report">
+            <field name="name">Emprunt Report</field>
+            <field name="model">bibliotheque.emprunt</field>
+            <field name="report_type">qweb-pdf</field>
+            <field name="report_name">gestion_bibliotheque.report_fiche_emprunt</field>
+            <field name="report_file">gestion_bibliotheque.report_fiche_emprunt</field>
+            <field name="binding_model_id" ref="model_bibliotheque_emprunt"/>
+            <field name="binding_type">report</field>
+            <field name="paperformat_id" ref="paperformat_emprunt"/>
+        </record>
+
+        <record id="paperformat_emprunt" model="report.paperformat">
+            <field name="name">European A4 Custom</field>
+            <field name="default" eval="True"/>
+            <field name="format">custom</field>
+            <field name="page_height">180</field>
+            <field name="page_width">180</field>
+            <field name="orientation">Portrait</field>
+            <field name="margin_top">40</field>
+            <field name="margin_bottom">20</field>
+            <field name="margin_left">7</field>
+            <field name="margin_right">7</field>
+            <field name="header_line" eval="False"/>
+            <field name="header_spacing">35</field>
+            <field name="dpi">90</field>
+        </record>
+
+
+        <template id="report_fiche_emprunt">
+            <t t-call="web.html_container">
+                <t t-foreach="docs" t-as="emprunt">
+                    <t t-call="web.external_layout">
+                        <div class="page">
+                            <t t-debug="emprunt"/>
+                            <h2>Fiche d'Emprunt</h2>
+
+                            <div class="row mt-4">
+                                <div class="col-6">
+                                    <strong>Emprunteur:</strong>
+                                    <span t-field="emprunt.emprunteur_id.nom"/>
+                                    <span t-field="emprunt.emprunteur_id.prenom"/>
+                                </div>
+                                <div class="col-6">
+                                    <strong>Status:</strong>
+                                    <span t-if="emprunt.rendu">Rendu</span>
+                                    <span t-else="">En cours</span>
+                                </div>
+                            </div>
+
+                            <div class="row mt-3">
+                                <div class="col-6">
+                                    <strong>Date début:</strong>
+                                    <span t-field="emprunt.date_debut"/>
+                                </div>
+                                <div class="col-6">
+                                    <strong>Date fin:</strong>
+                                    <span t-field="emprunt.date_fin"/>
+                                </div>
+                            </div>
+
+                            <h3 class="mt-4">Livres empruntés</h3>
+                            <table class="table table-bordered mt-2">
+                                <thead>
+                                    <tr>
+                                        <th>Titre</th>
+                                        <th>ISBN</th>
+                                        <th>Langue</th>
+                                        <th>Pages</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr t-foreach="emprunt.emprunt_ligne_ids" t-as="ligne">
+                                        <td>
+                                            <span t-field="ligne.livre_id.titre"/>
+                                        </td>
+                                        <td>
+                                            <span t-field="ligne.isbn"/>
+                                        </td>
+                                        <td>
+                                            <span t-field="ligne.langue_livre"/>
+                                        </td>
+                                        <td>
+                                            <span t-field="ligne.nbre_pages"/>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </t>
+                </t>
+            </t>
+        </template>
+    </data>
+</odoo>
