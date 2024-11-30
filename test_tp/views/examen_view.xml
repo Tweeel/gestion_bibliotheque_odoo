@@ -1,0 +1,27 @@
+<odoo>
+    <record id="examen_view_tree" model="ir.ui.view">
+        <field name="name">examen.tree</field>
+        <field name="model">examen</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="num"/>
+                <field name="date"/>
+                <field name="matiere"/>
+                <field name="salle_id"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="examen_action" model="ir.actions.act_window">
+        <field name="name">Examens</field>
+        <field name="res_model">examen</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <menuitem
+        id="examen_menu_item"
+        name="Examens"
+        parent="test_tp_models_menu"
+        action="examen_action"
+    />
+</odoo>

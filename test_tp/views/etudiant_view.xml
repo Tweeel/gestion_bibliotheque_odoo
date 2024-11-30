@@ -1,0 +1,27 @@
+<odoo>
+    <record id="etudiant_view_tree" model="ir.ui.view">
+        <field name="name">etudiant.tree</field>
+        <field name="model">etudiant</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="nom"/>
+                <field name="prenom"/>
+                <field name="date_naissance"/>
+                <field name="age"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="etudiant_action" model="ir.actions.act_window">
+        <field name="name">Etudiants</field>
+        <field name="res_model">etudiant</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <menuitem
+        id="etudiant_menu_item"
+        name="Etudiants"
+        parent="test_tp_models_menu"
+        action="etudiant_action"
+    />
+</odoo>

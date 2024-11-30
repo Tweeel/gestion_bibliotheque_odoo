@@ -1,0 +1,54 @@
+<odoo>
+    <record id="salle_view_tree" model="ir.ui.view">
+        <field name="name">salle.tree</field>
+        <field name="model">salle</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="num"/>
+                <field name="nbr_etudiant_examen"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="salle_view_form" model="ir.ui.view">
+        <field name="name">salle.form</field>
+        <field name="model">salle</field>
+        <field name="arch" type="xml">
+            <form>
+                <header>
+                    <button
+                            name="calcule_nbr_math_exam"
+                            string="Calculate Math Exams"
+                            type="object"
+                            class="oe_highlight"/>
+
+                         <button
+                            name="calcule_students"
+                            string="Calculate Students"
+                            type="object"
+                            class="oe_highlight"/>
+                </header>
+                <sheet>
+                    <group>
+                        <field name="num"/>
+                        <field name="nbr_etudiant_examen"/>
+                        <field name="nb_examen"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="salle_action" model="ir.actions.act_window">
+        <field name="name">Salles</field>
+        <field name="res_model">salle</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <menuitem
+            id="salle_menu_item"
+            name="Salles"
+            parent="test_tp_models_menu"
+            action="salle_action"
+    />
+</odoo>

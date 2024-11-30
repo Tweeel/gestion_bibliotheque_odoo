@@ -1,11 +1,11 @@
 # -*- coding: utf-8 -*-
 {
-    'name': "gestion_bibliotheque",
+    'name': "gestion_examen",
 
-    'summary': "Short (1 phrase/line) summary of the module's purpose",
+    'summary': "This module is only ment for the practice test 2024/2025",
 
     'description': """
-Long description of module's purpose
+This module is only ment for the practice test 2024/2025
     """,
 
     'author': "Houssam Eddine",
@@ -22,18 +22,11 @@ Long description of module's purpose
 
     # always loaded
     'data': [
-        'security/security.xml',
         'security/ir.model.access.csv',
         'views/base_menu.xml',
         'views/etudiant_view.xml',
-        'views/emprunt_view.xml',
-        'views/emprunteur_view.xml',
-        'views/livre_view.xml',
-        'wizards/add_emprunt_wizard_views.xml',
-        'wizards/view_reset_emprunts_wizard_form.xml',
-        'raport/auteur_report.xml',
-        'raport/emprenteur_report.xml',
-        'raport/emprunt_report.xml'
+        'views/examen_view.xml',
+        'views/salle_view.xml',
     ],
     'application': True,
 }

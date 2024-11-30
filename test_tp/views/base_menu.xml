@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <menuitem id="menu_gestion_test_tp_root" name="Test Tp"/>
+    <menuitem id="test_tp_models_menu" name="Models" parent="menu_gestion_test_tp_root"/>
+</odoo>
